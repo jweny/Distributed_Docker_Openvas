@@ -150,19 +150,7 @@ docker exec -it gvm /add-scanner.sh
 
 ## 0x04 调度Demo
 
-```mermaid
-graph LR
-A[身份认证] -->B(获取configID)
-A -->C(scannerID列表)
-A -->D(创建资产 获取资产ID)
-B --> E(遍历ScannerID列表 创建任务)
-C --> E
-D --> E
-E --> F(启动任务)
-F --> G{获取扫描进度}
-G -->|扫描未完成| G
-G -->|扫描完成| H[获取扫描结果]
-```
+![image-20201210152337395](img/image-20201210152337395.png)
 
 注意：单个扫描任务创建时要分配Scanner且无法修改，这个是比较大的缺陷，想要修改只能删除重新创建。一种最基础的轮询策略，在创建任务时，将任务平均分配到每一个scanner。
 
