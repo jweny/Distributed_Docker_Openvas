@@ -27,7 +27,7 @@ https://pan.baidu.com/s/1Au_xKGV6Fwb3FmT-62QbwA  密码:nja5
 
 2. [先下载项目中规则库](https://github.com/jweny/Distributed_Docker_Openvas)。plugins为NVT规则，cert-data为CERT规则，scap-data为SCAP规则。将三个文件夹copy至宿主机的 `/var/lib/docker/volumu/gvm-data/_data/` 下。
 
-   ![image-20201204113704811](/Users/lucifer/Desktop/基于Docker的分布式OpenVAS/基于Docker的分布式OpenVAS.assets/image-20201204113704811.png)
+   ![image-20201204113704811](img/image-20201204113704811.png)
 
 **构建镜像**
 
@@ -68,13 +68,13 @@ docker logs -f gvm
 
 如果看到下图则启动成功：
 
-![image-20201204151101799](/Users/lucifer/Desktop/基于Docker的分布式OpenVAS/基于Docker的分布式OpenVAS.assets/image-20201204151101799.png)
+![image-20201204151101799](img/image-20201204151101799.png)
 
 这个报错忽略。产生原因是没有启动gvm服务前创建scap。gvm启动后会自动从scap文件中加载。
 
-![image-20201204141252899](/Users/lucifer/Desktop/基于Docker的分布式OpenVAS/基于Docker的分布式OpenVAS.assets/image-20201204141252899.png)
+![image-20201204141252899](img/image-20201204141252899.png)
 
-![image-20201204141440034](/Users/lucifer/Desktop/基于Docker的分布式OpenVAS/基于Docker的分布式OpenVAS.assets/image-20201204141440034.png)
+![image-20201204141440034](img/image-20201204141440034.png)
 
 启动后，容器端口使用情况如下。GVM宿主机防火墙请允许
 
@@ -128,7 +128,7 @@ docker logs -f scanner
 
 如果看到下图则启动成功：
 
-![image-20201204150940135](/Users/lucifer/Desktop/基于Docker的分布式OpenVAS/基于Docker的分布式OpenVAS.assets/image-20201204150940135.png)
+![image-20201204150940135](img/image-20201204150940135.png)
 
 **GVM中注册Scanner**
 
@@ -146,7 +146,7 @@ docker exec -it gvm /add-scanner.sh
 
 进入 gvm 容器，切换至 gvm 用户，获取Scanner列表。确认新增的Scanner是否正常连接，如果返回Scanner版本说明没有异常。
 
-![image-20201204151529725](/Users/lucifer/Desktop/基于Docker的分布式OpenVAS/基于Docker的分布式OpenVAS.assets/image-20201204151529725.png)
+![image-20201204151529725](img/image-20201204151529725.png)
 
 ## 0x04 调度Demo
 
