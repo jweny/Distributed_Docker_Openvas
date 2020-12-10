@@ -132,19 +132,28 @@ func getAllResult(gmpClient gmp.Client)  {
 	}
 }
 
+func getSingleTaskResult(gmpClient gmp.Client, taskId string){
+	getResults := &gmp.GetResultsCommand{}
+	getResults.Filter = fmt.Sprintf("task_id=%s levels=hml min_qod=70 apply_overrides=0 sort-reverse=severity rows=10 first=1",taskId)
+	//getResults.Filter = "task_id=8025e8a5-05e9-43f7-81da-f3e45d7f2d32 levels=hml min_qod=70 apply_overrides=0 sort-reverse=severity rows=10 first=1"
+	results, err := gmpClient.GetResults(getResults)
+	if err != nil {
+		panic(err)
+	}
+	res := results.Result
+	for i := 0; i < len(res); i++ {
+		resSingle := res[i]
+		fmt.Println(resSingle)
+		//fmt.Printf("Result[%d]: (host:%s) (vul:%s) (score: %s)\n", i, res[i].Host,res[i].Name, res[i].Severity)
+	}
+}
 
-//for {
-//	gt := &gmp.GetTasksCommand{}
-//	gt.TaskID = newTaskResp.ID
-//	getTasksResp, err := gmpClient.GetTasks(gt)
-//	if err != nil {
-//		panic(err)
-//	}
-//	time.Sleep(10 * time.Second)
-//	fmt.Printf("Monitoring task progress: %scannerCmd%%\n", getTasksResp.Task[0].Progress.Value)
-//
-//	if x, _ := strconv.Atoi(getTasksResp.Task[0].Progress.Value); x >= 100 {
-//		break
-//	}
-//}
-
+func getTaskProcess(gmpClient gmp.Client, taskId string)(string,error){
+	gt := &gmp.GetTasksCommand{}
+	gt.TaskID = taskId
+	getTasksResp, err := gmpClient.GetTasks(gt)
+	if err != nil {
+		return "", err
+	}
+	return getTasksResp.Task[0].Progress.Value, nil
+}
