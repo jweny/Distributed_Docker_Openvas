@@ -105,7 +105,7 @@ cd scanner-docker-20.08
 docker build -t jweny/gvm-scanner-docker-20.08 .
 
 # 使用打包好的镜像
-docker pull jweny/gvm-scanner-docker-20.08:lastest
+docker pull jweny/gvm-scanner-docker-20.08
 ```
 
 **启动镜像**

@@ -91,7 +91,7 @@ if [ ! -d /var/run/ospd ]; then
 fi
 
 echo "Starting Open Scanner Protocol daemon for OpenVAS..."
-ospd-openvas --scaninfo-store-time 12 --log-file /usr/local/var/log/gvm/ospd-openvas.log --unix-socket /data/ospd.sock --log-level INFO
+ospd-openvas --log-file /usr/local/var/log/gvm/ospd-openvas.log --unix-socket /data/ospd.sock --log-level INFO
 
 while  [ ! -S /data/ospd.sock ]; do
 	sleep 1
