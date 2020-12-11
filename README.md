@@ -175,7 +175,7 @@ configId, err := getConfigId(gmpClient, "system_config")
 scannerList, err := getScannersIdList(gmpClient)
 ```
 
-​	值得注意的是，GVM自带一个CVE Scanner，如果只使用config扫描的话，分配任务时需要CVE Scanner的ID从scannerID列表中删除。
+​	值得注意的是，GVM自带一个CVE Scanner，如果只使用config扫描的话，需要将其过滤。scannerCmd.Filter = `type="2"`
 
 **创建新资产**
 

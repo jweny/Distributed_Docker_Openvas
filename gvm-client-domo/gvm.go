@@ -32,7 +32,7 @@ func gvmClient(gvmServerAddr string, gvmUsername string, gvmPwd string)(gmp.Clie
 // 要去掉默认带的CVE scanner，所以也可以去数据库取数据
 func getScannersIdList(gmpClient gmp.Client) ([]string,error) {
 	scannerCmd := &gmp.GetScannersCommand{}
-	//scannerCmd.Filter = `name="OpenVAS Default"`
+	scannerCmd.Filter = `type="2"`
 	scannersResp, err := gmpClient.GetScanners(scannerCmd)
 	if err != nil {
 		return nil, err
@@ -50,7 +50,6 @@ func getScannersIdList(gmpClient gmp.Client) ([]string,error) {
 // 获取 规则id 规则名称为system_config
 func getConfigId(gmpClient gmp.Client, configName string)(string,error){
 	configCmd := &gmp.GetConfigsCommand{}
-	//configCmd.Filter = `name="system_config"`
 	configCmd.Filter = fmt.Sprintf(fmt.Sprintf("name=\"%s\"", configName))
 	configResp, err := gmpClient.GetConfigs(configCmd)
 	if err != nil {
