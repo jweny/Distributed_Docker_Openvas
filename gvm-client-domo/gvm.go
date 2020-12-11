@@ -29,7 +29,7 @@ func gvmClient(gvmServerAddr string, gvmUsername string, gvmPwd string)(gmp.Clie
 }
 
 // 获取scanner id list
-// 要去掉默认带的CVE scanner，所以也可以去数据库取数据
+// scannerCmd.Filter = `type="2"`  过滤掉默认带的CVE scanner
 func getScannersIdList(gmpClient gmp.Client) ([]string,error) {
 	scannerCmd := &gmp.GetScannersCommand{}
 	scannerCmd.Filter = `type="2"`
